@@ -47,10 +47,20 @@ export const getGigs = async (req, res, next) => {
         ...(q.search && { title: { $regex: q.search, $options: "i" } }),
         ...((q.min || q.max) && { price: { ...(q.min && { $gt: q.min }), ...(q.max && { $lt: q.max }) } })
     }
-    
+
     try {
-        const gigs = await Gig.find(filters).sort({[q.sort]:-1}) // q.sort == createdAt/sales
+        const gigs = await Gig.find(filters).sort({ [q.sort]: -1 }) // q.sort == createdAt/sales
         res.status(200).send(gigs)
+    } catch (error) {
+
+    }
+}
+
+export const myGigs = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const gigs = await Gig.find({ userId: userId });
+        res.status(200).json(gigs);
     } catch (error) {
 
     }

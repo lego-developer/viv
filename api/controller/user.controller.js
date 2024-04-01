@@ -37,10 +37,31 @@ export const deleteUser = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
 
-  
 
     const user = await useryoutube.findById(req.params.id)
 
     res.status(200).send(user)
 
+} 
+
+
+export const getSellers = async (req, res, next) => {
+
+
+    const users = await useryoutube.find({isSeller:true})
+     res.status(200).send(users)
+
 }
+
+
+// export const getUsers = async(req,res,next) =>{
+
+
+
+//         console.log("hello")
+
+//         //  const allUsers = await useryoutube.find({ isSeller: true })
+//         // res.send(req)
+
+
+// }

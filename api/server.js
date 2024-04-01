@@ -14,11 +14,12 @@ import cookieParser from "cookie-parser";
 import cors from "cors"
 
 
+
 const app = express()
 dotenv.config()
 
 //middlewares 
-app.use(cors({ origin: "http://localhost:5173", credentials: true })) // connecting fronend to backend
+app.use(cors({  origin: "http://localhost:5173", credentials: true })) // connecting fronend to backend
 app.use(express.json()) // if not added , error while sending datas from client ot server
 app.use(cookieParser()) // for cookie parser
 
